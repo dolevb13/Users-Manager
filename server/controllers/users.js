@@ -22,10 +22,6 @@ export const getUser = async (req, res) => {
 
 export const addUser = async (req, res) => {
     try {
-        // const errors = validationResult(req);
-        // if (!errors.isEmpty()) {
-        //     return res.status(422).json({message: errors.array()[0].msg, errors: errors.array()});
-        // }
         const {firstName, lastName, email, city, country} = req.body;
         const user = new UserModel({name: {first: firstName, last: lastName}, email, location: {city, country}});
         const savedUser = await user.save();
