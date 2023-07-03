@@ -1,4 +1,3 @@
-import fs from 'fs';
 import UserModel from '../models/user.js';
 
 export const getAllUsers = async (req, res) => {
