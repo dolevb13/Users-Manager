@@ -1,0 +1,66 @@
+.headline {
+    display: flex;
+    align-items: center;
+    background-color: rgb(228, 254, 253);
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 15px;
+    height: 70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    transition: background-color 1s ease;
+
+    
+    .headline-menu-icon {
+        width: 40px;
+        height: 40px;
+        padding-left: 15px;
+        
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.hidden {
+            visibility: hidden;
+        }
+
+        &.clicked {
+            // animation: 1s ease-in-out forwards;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0.5;
+        }
+    }
+
+    .headline-theme-icon {
+        padding-right: 15px;
+        color: rgb(255, 162, 0);
+
+        svg {
+            width: 30px;
+            height: 30px;
+            
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &.dark {
+        background-color: rgb(71, 71, 71);
+
+        h1, .headline-menu-icon, .headline-theme-icon {
+            color: white;
+        }
+
+        
+    }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5; /* Final opacity */
+  }
+}

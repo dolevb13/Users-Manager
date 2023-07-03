@@ -1,0 +1,22 @@
+.error-page-home-link-container {
+    background-color: rgb(228, 254, 253);
+    padding: 10px 20px;
+    margin-top: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        background-color: rgb(120, 120, 120);
+        
+        a {
+            color: rgb(228, 254, 253);
+        }
+    }
+    
+
+    a {
+        text-decoration: none;
+        font-size: 20px;
+    }
+}

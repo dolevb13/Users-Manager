@@ -1,0 +1,10 @@
+.home-page-container {
+
+    transition: background-color 1s ease;
+            height: 100vh;
+
+    &.dark {
+
+        background-color: black;
+    }
+}
