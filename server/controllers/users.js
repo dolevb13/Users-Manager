@@ -26,15 +26,9 @@ export const addUser = async (req, res) => {
         // if (!errors.isEmpty()) {
         //     return res.status(422).json({message: errors.array()[0].msg, errors: errors.array()});
         // }
-        const parsedData = JSON.parse(req.body.user);
-        const {firstName, lastName, email, city, country} = parsedData;
-        const {image} = req.files;
-        // const file = req.image;
-        // const imageBuffer = await fs.promises.readFile(image.path);
-        // const hashedPassword = await bcrypt.hash(password, 12);
-        const user = new UserModel({name: {first: firstName, last: lastName}, email, location: {city, country}, image: image.data});
+        const {firstName, lastName, email, city, country} = req.body;
+        const user = new UserModel({name: {first: firstName, last: lastName}, email, location: {city, country}});
         const savedUser = await user.save();
-        // await fs.promises.unlink(image.path);
         res.status(201).json(savedUser);
     } catch (err) {
         res.status(500).json({error: err.message});
