@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { addUser, getAllUsers, getUser } from '../controllers/users.js';
+import { addUser, deleteUser, getAllUsers, getUser, updateUser } from '../controllers/users.js';
 
 const router = express.Router();
 
@@ -19,11 +19,16 @@ const upload = multer({ storage });
 // GET /users/usersList
 router.get('/usersList', getAllUsers);
 
-// GET /users/:user
+// GET /users/:userId
 router.get('/:userId', getUser);
 
 // POST /users/newUser
 router.post('/newUser', addUser);
-// router.post('/newUser', upload.single("image"), addUser);
+
+// PATCH /users/:userId
+router.patch('/:userId', updateUser);
+
+// DELETE /users/:userId
+router.delete('/:userId', deleteUser);
 
 export default router;

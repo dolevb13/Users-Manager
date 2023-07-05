@@ -19,7 +19,7 @@ export const userSlice = createSlice({
         updateUser: (state, action) => {
             if (state.users) {
                 const userIndex = state.users.findIndex(user => {
-                return user._id === action.payload.id
+                return user._id === action.payload._id
                 });
                 state.users[userIndex] = action.payload;
             }
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
         },
         deleteUser: (state, action) => {
             state.users = state.users?.filter(user => {
-                return user._id !== action.payload.id
+                return user._id !== action.payload._id
             });
         }
     }

@@ -6,10 +6,12 @@ import { setUsers } from '../store/userSlice';
 import './UsersPage.scss';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import AddCard from '../AddCard/AddCard';
+import classNames from 'classnames';
 
 const UserPage = () => {
     // const [users, setUsers] = useState<User[]>();
-    const users = useAppSelector(state => state.user.users)
+    const users = useAppSelector(state => state.user.users);
+    const lightTheme = useAppSelector(state => state.theme.light);
     const dispatch = useAppDispatch();
 
     // const handleDeleteUser = (id: string) => {
@@ -19,26 +21,6 @@ const UserPage = () => {
 
     useEffect(() => {
         let isSubscribed = true;
-
-        // const fetchUsers = async () => {
-        //     try {
-        //         const data = await fetch('https://randomuser.me/api/?results=10');
-        //         const json = await data.json();
-        //         const users: User[] = json.results.map(user => ({
-        //             id: user.id.value ?? uuidv4(),
-        //             name: user.name,
-        //             email: user.email,
-        //             location: {country: user.location.country, city: user.location.city},
-        //             image: user.picture.medium,
-        //         }))
-        //         if (isSubscribed) {
-        //             dispatch(setUsers(users));
-        //         }
-        //     } catch (e) {
-        //         console.log(e);
-        //     }
-        // }
-
         const fetchUsers = async () => {
             try {
                 const data = await fetch('http://localhost:3000/users/usersList');
@@ -58,9 +40,9 @@ const UserPage = () => {
     }, [dispatch]);
 
     return (
-        <div className='users-page-container'>
+        <div className={classNames('users-page-container', {dark: !lightTheme})}>
             {users?.map((user: User) => {
-                return <UserCard key={user._id} id={user._id} name={user.name} email={user.email} location={user.location} image={user.image}/>
+                return <UserCard key={user._id} _id={user._id} name={user.name} email={user.email} location={user.location} image={user.image}/>
             })}
             {users && <AddCard/>}
         </div>

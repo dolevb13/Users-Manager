@@ -1,0 +1,30 @@
+.user-info-page-container {
+    background-color: aqua;
+    height: 150px;
+
+    .user-info-page-name {
+        font-size: 80px;
+        position: absolute;
+        left: 40%;
+        top: 2%;
+            animation: fade-in-animation 1s ease-in forwards;
+    @keyframes fade-in-animation {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    }
+
+    .user-info-page-image {
+        position: absolute;
+        left: 5%;
+        top: 5%;
+        height: 300px;
+        width: 300px;
+        background-color: red;
+        border-radius: 50%;
+    }
+}

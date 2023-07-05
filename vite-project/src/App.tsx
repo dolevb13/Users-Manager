@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './routes/HomePage';
 import ErrorPage from './routes/ErrorPage/ErrorPage';
-import UserInfoPage from './routes/UserInfoPgae/UserInfoPage';
+import UserInfoPage from './routes/UserInfoPage/UserInfoPage';
 import './store/themeStyles.scss';
 import { useAppSelector } from './app/hooks';
 
@@ -22,8 +22,6 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-
-  const theme = useAppSelector(state => state.theme.light);
 
   return (
     <RouterProvider router={router} />

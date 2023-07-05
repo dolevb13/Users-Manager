@@ -11,13 +11,11 @@ import { Link } from 'react-router-dom';
 import { deleteUser } from '../store/userSlice';
 import classNames from 'classnames';
 
-interface Props extends User {
-    handleDeleteUser: (arg: string) => void
-}
-
-const UserCard: React.FC<Props> = ({id, name, email, location, image}) => {
+const UserCard: React.FC<User> = ({_id, name, email, location, image}) => {
 
     const [imageData, setImageData] = useState('');
+    const imageSplitted = image.split('\\');
+    const a = imageSplitted[0] + '/' + imageSplitted[1];
     const [isModalShown, setIsModalShown] = useState(false);
     const lightTheme = useAppSelector(state => state.theme.light);
     const dispatch = useAppDispatch();
@@ -26,33 +24,34 @@ const UserCard: React.FC<Props> = ({id, name, email, location, image}) => {
     const fullName = `${first} ${last}`;
     const residence = `${city}, ${country}`;
 
-    const fileToDataURL = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
+    // const fileToDataURL = (file) => {
+    //     return new Promise((resolve, reject) => {
+    //         const reader = new FileReader();
         
-            reader.onload = () => {
-            resolve(reader.result);
-            };
+    //         reader.onload = () => {
+    //         resolve(reader.result);
+    //         };
             
-            reader.onerror = (error) => {
-            reject(error);
-            };
+    //         reader.onerror = (error) => {
+    //         reject(error);
+    //         };
             
-            reader.readAsDataURL(file);
+    //         reader.readAsDataURL(file);
+    //     });
+    // }
+
+    // if (typeof image === 'object') {
+    //     const file = image[0];
+    //     fileToDataURL(file).then(dataURL => {
+    //         setImageData(dataURL)
+    //     })
+    // }
+
+    const handleClose = async () => {
+        await fetch(`http://localhost:3000/users/${_id}`, {
+            method: 'DELETE',
         });
-    }
-
-    if (typeof image === 'object') {
-        const file = image[0];
-        fileToDataURL(file).then(dataURL => {
-            const a = 1;
-            setImageData(dataURL)
-        })
-    }
-
-
-    const handleClose = () => {
-        dispatch(deleteUser({id}));
+        dispatch(deleteUser({_id}));
     }
 
     const handleEdit = () => {
@@ -67,7 +66,7 @@ const UserCard: React.FC<Props> = ({id, name, email, location, image}) => {
 
     return (
         <>
-            {isModalShown && <EditModal setModal={setIsModalShown} id={id} name={name} email={email} location={location}/>}
+            {isModalShown && <EditModal setModal={setIsModalShown} id={_id} name={name} email={email} location={location}/>}
             <div className={classNames('user-card-container', {'dark': !lightTheme})}>
                 <div className='user-card-icons'>
                     <div>
@@ -75,7 +74,7 @@ const UserCard: React.FC<Props> = ({id, name, email, location, image}) => {
                             <ModeEditIcon className='mode-edit-icon' onClick={handleEdit}/>
                         </Tooltip>
                         <Tooltip title='More Information' arrow>
-                            <Link to={id}>
+                            <Link to={_id}>
                                 <LaunchIcon className='launch-icon' />
                             </Link>
                         </Tooltip>
@@ -86,7 +85,7 @@ const UserCard: React.FC<Props> = ({id, name, email, location, image}) => {
                 <div className='user-card-email' onClick={sendEmail}>{email}</div>
                 <div>{residence}</div>
                 <div className='user-card-image-container'>
-                    <img src={imageData || image}/>
+                    <img src={`http://localhost:3000/${image}`}/>
                 </div>
             </div>
         </>

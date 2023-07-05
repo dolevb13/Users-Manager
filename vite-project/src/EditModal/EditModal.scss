@@ -1,4 +1,4 @@
-.edit-modal-backdrop {
+.modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     background: rgba(0, 0, 0, 0.75);
 }
 
-.edit-modal-container {
+.modal-container {
     display: flex;
     flex-direction: column;
     background-color: aliceblue;
@@ -38,11 +38,11 @@
         align-self: center;
     }
 
-    .edit-modal-form {
+    .modal-form {
         display: flex;
         flex-direction: column;
         
-        .edit-modal-name, .edit-modal-location {
+        .modal-form-name, .modal-form-location {
             display: flex;  
             
             > * {
@@ -51,11 +51,11 @@
 
         }
 
-        .edit-modal-form-email {
+        .modal-form-email {
             margin: 10px;
         }
 
-        .edit-modal-submit {
+        .modal-form-submit {
             width: 200px;
             border: none;
             outline: none;
@@ -65,15 +65,13 @@
             align-self: center;
             box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
             position: relative;
-            overflow: hidden;
             cursor: pointer;
             font-size: 16px;
-            // margin-top: 50px;
             padding: 10px;
-            margin-bottom: 20px;
+            margin: 20px;
         }
 
-        .edit-modal-error-message {
+        .modal-error-message {
             color: red;
             visibility: hidden;
             margin-left: 20px;
@@ -91,7 +89,7 @@
 }
 
 .custom-file-upload {
-        display: flex;
+    display: flex;
     padding: 20px 10px;
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid #c6c5c5;
@@ -100,7 +98,6 @@
     color: rgb(89, 89, 240);
     border-radius: 4px;
 }
-
 
 .custom-file-presenter {
     display: flex;
