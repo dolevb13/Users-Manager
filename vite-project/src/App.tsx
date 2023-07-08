@@ -4,11 +4,12 @@ import ErrorPage from './routes/ErrorPage/ErrorPage';
 import UserInfoPage from './routes/UserInfoPage/UserInfoPage';
 import './store/themeStyles.scss';
 import { useAppSelector } from './app/hooks';
+import LoginPage from './routes/LoginPage/LoginPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage/>,
+    element: <LoginPage/>,
     errorElement: <ErrorPage/>
   },
   {

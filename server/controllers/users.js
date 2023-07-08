@@ -1,4 +1,13 @@
+import fs from 'fs';
 import UserModel from '../models/user.js';
+
+const deleteFile = filePath => {
+    fs.unlink(filePath, err => {
+        if (err) {
+            throw err;
+        }
+    })
+}
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -50,6 +59,9 @@ export const deleteUser = async (req, res) => {
     try {
         const {userId} = req.params;
         const deletedUser = await UserModel.findByIdAndDelete(userId);
+        if (deletedUser.image) {
+            deleteFile(deletedUser.image);
+        }
         res.status(204).json(deletedUser);
     } catch (err) {
         res.status(500).json({error: err.message});

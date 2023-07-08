@@ -1,10 +1,12 @@
-.home-page-container, .users-page-container {
+ .home-page-container {
+    height: 100vh;
+} 
 
+.home-page-container {
     transition: background-color 1s ease;
-            // height: 100vh;
-
     &.dark {
-
         background-color: black;
     }
 }
+
+// .users-page-container with the same properties

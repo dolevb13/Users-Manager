@@ -37,6 +37,10 @@ dotenv.config();
 app.use(express.urlencoded({ extended: true}));
 app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
+// app.use((req, res, next) => {
+//   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+//   next();
+// });
 // app.use(fileUpload({
 //     createParentPath: true
 // }));

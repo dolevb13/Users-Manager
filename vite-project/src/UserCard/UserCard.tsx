@@ -12,10 +12,6 @@ import { deleteUser } from '../store/userSlice';
 import classNames from 'classnames';
 
 const UserCard: React.FC<User> = ({_id, name, email, location, image}) => {
-
-    const [imageData, setImageData] = useState('');
-    const imageSplitted = image.split('\\');
-    const a = imageSplitted[0] + '/' + imageSplitted[1];
     const [isModalShown, setIsModalShown] = useState(false);
     const lightTheme = useAppSelector(state => state.theme.light);
     const dispatch = useAppDispatch();
@@ -23,29 +19,6 @@ const UserCard: React.FC<User> = ({_id, name, email, location, image}) => {
     const {country = '', city = ''} = location;
     const fullName = `${first} ${last}`;
     const residence = `${city}, ${country}`;
-
-    // const fileToDataURL = (file) => {
-    //     return new Promise((resolve, reject) => {
-    //         const reader = new FileReader();
-        
-    //         reader.onload = () => {
-    //         resolve(reader.result);
-    //         };
-            
-    //         reader.onerror = (error) => {
-    //         reject(error);
-    //         };
-            
-    //         reader.readAsDataURL(file);
-    //     });
-    // }
-
-    // if (typeof image === 'object') {
-    //     const file = image[0];
-    //     fileToDataURL(file).then(dataURL => {
-    //         setImageData(dataURL)
-    //     })
-    // }
 
     const handleClose = async () => {
         await fetch(`http://localhost:3000/users/${_id}`, {
